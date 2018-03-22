@@ -32,7 +32,7 @@ public class PaintView extends View
     private int backgroundColor = DEFAULT_BG_COLOR;
     private int strokeWidth;
     private Bitmap mBitmap;
-    private Canvas mCanvs;
+    private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
     public PaintView(Context context)
     {
@@ -60,7 +60,7 @@ public class PaintView extends View
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        mCanvs = new Canvas(mBitmap);
+        mCanvas = new Canvas(mBitmap);
         currentColor = DEFAULT_COLOR;
         strokeWidth = BRUSH_SIZE;
     }
@@ -78,13 +78,13 @@ public class PaintView extends View
     {
         Log.e("PaintView", "onDraw");
         canvas.save();
-        mCanvs.drawColor(backgroundColor);
+        mCanvas.drawColor(backgroundColor);
         for(FingerPath fp : paths)
         {
             mPaint.setColor(fp.color);
             mPaint.setStrokeWidth(fp.strokeWidth);
             mPaint.setMaskFilter(null);
-            mCanvs.drawPath(fp.path, mPaint);
+            mCanvas.drawPath(fp.path, mPaint);
         }
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.restore();
