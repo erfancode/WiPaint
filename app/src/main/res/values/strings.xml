@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WiPaint</string>
     <string name="button_start">Start to Paint :)</string>
+    <string name="join_button">Join a Board</string>
 </resources>
