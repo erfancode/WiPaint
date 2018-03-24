@@ -1,6 +1,6 @@
 package com.example.wipaint.wipaint;
 
-import android.nfc.Tag;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -103,7 +103,7 @@ public abstract class ConnectionsActivity extends AppCompatActivity
         mConnectionsClient = Nearby.getConnectionsClient(this);
     }
 
-    protected void startAdvertisiong()
+    protected void startAdvertising()
     {
         mIsAdvertising = true;
         final String localEndpointName = getName();

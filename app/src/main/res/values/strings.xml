@@ -2,4 +2,6 @@
     <string name="app_name">WiPaint</string>
     <string name="button_start">Start to Paint :)</string>
     <string name="join_button">Join a Board</string>
+    <string name="toast_connected">Connected to %s</string>
+    <string name="toast_disconnected">Disconnected from %s</string>
 </resources>
