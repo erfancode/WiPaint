@@ -12,6 +12,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.google.android.gms.nearby.connection.Payload;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -34,6 +42,8 @@ public class PaintView extends View
     private Bitmap mBitmap;
     private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
+    private ConnectionsActivity connectionsActivity;
     public PaintView(Context context)
     {
         this(context, null);
@@ -54,6 +64,7 @@ public class PaintView extends View
         mPaint.setXfermode(null);
         mPaint.setAlpha(0xff);
     }
+
     public void init(DisplayMetrics metrics)
     {
         Log.e("PaintView", "init");
@@ -79,7 +90,7 @@ public class PaintView extends View
         Log.e("PaintView", "onDraw");
         canvas.save();
         mCanvas.drawColor(backgroundColor);
-        for(FingerPath fp : paths)
+        for (FingerPath fp : paths)
         {
             mPaint.setColor(fp.color);
             mPaint.setStrokeWidth(fp.strokeWidth);
@@ -89,29 +100,32 @@ public class PaintView extends View
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.restore();
     }
+
     private void touchStart(float x, float y)
     {
         Log.e("PaintView", "start");
         mPath = new Path();
-        FingerPath fp = new FingerPath(currentColor,strokeWidth, mPath);
+        FingerPath fp = new FingerPath(currentColor, strokeWidth, mPath);
         paths.add(fp);
         mPath.reset();
         mPath.moveTo(x, y);
         mX = x;
         mY = y;
     }
+
     private void touchMove(float x, float y)
     {
         Log.e("PaintView", "move");
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
-        if(dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE)
+        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE)
         {
             mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
             mX = x;
             mY = y;
         }
     }
+
     private void touchUp()
     {
         Log.e("PaintView", "up");
@@ -126,19 +140,29 @@ public class PaintView extends View
         float y = event.getY();
         switch (event.getAction())
         {
-            case MotionEvent.ACTION_DOWN :
+            case MotionEvent.ACTION_DOWN:
                 touchStart(x, y);
                 invalidate();
                 break;
-            case MotionEvent.ACTION_MOVE :
+            case MotionEvent.ACTION_MOVE:
                 touchMove(x, y);
                 invalidate();
                 break;
-            case MotionEvent.ACTION_UP :
+            case MotionEvent.ACTION_UP:
                 touchUp();
                 invalidate();
                 break;
         }
         return true;
     }
+
+    public ArrayList<FingerPath> getPaths()
+    {
+        return paths;
+    }
+    public void addPaths(ArrayList<FingerPath> e)
+    {
+        paths.addAll(e);
+    }
+
 }

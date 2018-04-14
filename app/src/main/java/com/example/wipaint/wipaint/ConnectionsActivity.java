@@ -25,6 +25,7 @@ import com.google.android.gms.nearby.connection.Strategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -66,7 +67,13 @@ public abstract class ConnectionsActivity extends AppCompatActivity
                 onConnectionFailed(mPendingConnections.remove(s));
                 return;
             }
-            connectedToEndpoint(mPendingConnections.remove(s));
+            try
+            {
+                connectedToEndpoint(mPendingConnections.remove(s));
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -270,8 +277,10 @@ public abstract class ConnectionsActivity extends AppCompatActivity
         mEstablishedConnections.remove(endpoint.getId());
         onEndpointDisconnected(endpoint);
     }
-    protected void onEndpointConnected(Endpoint endpoint) {}
-    private void connectedToEndpoint(Endpoint endpoint) {
+    protected void onEndpointConnected(Endpoint endpoint) throws IOException
+    {}
+    private void connectedToEndpoint(Endpoint endpoint) throws IOException
+    {
         Log.d(TAG, String.format("connectedToEndpoint(endpoint=%s)", endpoint));
         mEstablishedConnections.put(endpoint.getId(), endpoint);
         onEndpointConnected(endpoint);
@@ -290,6 +299,7 @@ public abstract class ConnectionsActivity extends AppCompatActivity
 
     protected void send(Payload payload)
     {
+        Log.d(TAG, "Sending payloads ");
         send(payload, mEstablishedConnections.keySet());
     }
     protected void send(Payload payload, Set<String> endpoints)
@@ -305,7 +315,10 @@ public abstract class ConnectionsActivity extends AppCompatActivity
                 });
     }
 
+    protected void sendData()
+    {
 
+    }
 
     protected static class Endpoint {
         @NonNull
