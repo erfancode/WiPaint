@@ -45,6 +45,7 @@ public abstract class ConnectionsActivity extends AppCompatActivity
     private final Map<String, Endpoint> mPendingConnections = new HashMap<>();
     private final Map<String, Endpoint> mEstablishedConnections = new HashMap<>();
     private boolean mIsConnectiong, mIsDiscovering, mIsAdvertising;
+    String endpointId = null;
     private final ConnectionLifecycleCallback mConnectionLifecycleCallback = new ConnectionLifecycleCallback()
     {
         @Override
@@ -59,6 +60,7 @@ public abstract class ConnectionsActivity extends AppCompatActivity
         @Override
         public void onConnectionResult(String s, ConnectionResolution connectionResolution)
         {
+            endpointId = s;
             Log.d(TAG, String.format("onConnectionResult(endpointId=%s, result=%s", s, connectionResolution));
             mIsConnectiong = false;
             if(!connectionResolution.getStatus().isSuccess())

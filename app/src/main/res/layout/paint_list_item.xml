@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="0dp"
+    android:background="@color/bg_list">
+
+    <ImageView
+        android:id="@+id/small_paint"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/share_btn" android:contentDescription="TODO"/>
+    <TextView
+        android:id="@+id/paint_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/small_paint"
+        android:layout_gravity="center_horizontal"
+        android:text="NAME"/>
+    <TextView
+        android:id="@+id/paint_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/small_paint"
+        app:layout_constraintTop_toBottomOf="@+id/paint_name"
+        android:text="DATE"/>
+    <TextView
+        android:id="@+id/gps_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/small_paint"
+        app:layout_constraintTop_toBottomOf="@+id/paint_date"
+        android:text="GPS"/>
+
+
+
+</android.support.constraint.ConstraintLayout>

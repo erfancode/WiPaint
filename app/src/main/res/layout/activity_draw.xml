@@ -6,9 +6,71 @@
     android:layout_height="match_parent"
     tools:context="com.example.wipaint.wipaint.Draw">
 
+    <ImageButton
+        android:id="@+id/select_color_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/select_color_btn"
+        android:clickable="true" />
+    <ImageButton
+        android:id="@+id/emboss_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/select_color_btn"
+        app:layout_constraintTop_toBottomOf="@id/select_color_btn"
+        android:src="@drawable/emboss_off_btn"/>
+    <ImageButton
+        android:id="@+id/blur_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/emboss_btn"
+        app:layout_constraintTop_toBottomOf="@id/emboss_btn"
+        android:clickable="true"
+        android:src="@drawable/blur_off_btn"/>
+    <ImageButton
+        android:id="@+id/brush_size_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/blur_btn"
+        app:layout_constraintTop_toBottomOf="@id/blur_btn"
+        android:clickable="true"
+        android:src="@drawable/brush_size_btn"/>
+    <ImageButton
+        android:id="@+id/eraser_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/brush_size_btn"
+        app:layout_constraintTop_toBottomOf="@id/brush_size_btn"
+        android:clickable="true"
+        android:src="@drawable/eraser_off_btn"/>
+    <ImageButton
+        android:id="@+id/clear_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/eraser_btn"
+        app:layout_constraintTop_toBottomOf="@id/eraser_btn"
+        android:clickable="true"
+        android:src="@drawable/clear_btn"/>
+    <ImageButton
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/clear_btn"
+        app:layout_constraintTop_toBottomOf="@id/clear_btn"
+        android:clickable="true"
+        android:src="@drawable/save_btn"/>
+    <View
+        android:id="@+id/vertical_divider"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/select_color_btn"
+        android:background="@android:color/black"/>
+
     <com.example.wipaint.wipaint.PaintView
         android:id="@+id/paint_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        app:layout_constraintStart_toEndOf="@+id/vertical_divider"/>
 
 </android.support.constraint.ConstraintLayout>

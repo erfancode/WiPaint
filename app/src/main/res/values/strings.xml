@@ -4,4 +4,11 @@
     <string name="join_button">Join a Board</string>
     <string name="toast_connected">Connected to %s</string>
     <string name="toast_disconnected">Disconnected from %s</string>
+    <string name="brush_size_dialog_msg">Please Select Your Brush Size :)</string>
+    <string name="paint_cleared">Paint cleared !</string>
+    <string name="emboss_off">now Emboss is off :/</string>
+    <string name="blur_on">now Blur is on :)</string>
+    <string name="blur_off">now Blur is off :/</string>
+    <string name="emboss_on">now Emboss is on :)</string>
+    <string name="save_msg">you\'r paint saved in :</string>
 </resources>
